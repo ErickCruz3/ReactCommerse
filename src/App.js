@@ -1,14 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 
 import Header from './components/Layout/Header'
 import Meals from "./components/Meals/Meals"
 import Cart from "./components/Card/Cart";
 
 function App() {
+  const [cartIsShow, setCartIsShow] = useState()
+
+  const showCartHandler = () => {
+    setCartIsShow(true)
+  }
+
+  const hideCartHandler = () => {
+    setCartIsShow(false)
+  }
+
   return (
     <React.Fragment>
-      <Cart />
-      <Header />
+      {cartIsShow && <Cart onClose={hideCartHandler}/>}
+      <Header onShowCart={showCartHandler} />
       <main>
         <Meals />
       </main>
